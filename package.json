@@ -1,0 +1,32 @@
+{
+  "name": "storyteller_cli",
+  "version": "1.0.0",
+  "description": "Storyteller cli, it works standalone with local data. If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toukubo/storyteller_cli.git"
+  },
+  "keywords": [
+    "code",
+    "genreation",
+    "framework",
+    "ai"
+  ],
+  "author": "koji toukubo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toukubo/storyteller_cli/issues"
+  },
+  "homepage": "https://github.com/toukubo/storyteller_cli#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.20.0",
+    "shelljs": "^0.8.3"
+  }
+}
