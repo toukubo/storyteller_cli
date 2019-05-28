@@ -3,17 +3,22 @@
 Storyteller cli, it works standalone with local data. If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.
 
 # install
-# use it
-# Story for sentences
+```
+npm install storyteller_cli -g
+```
 
+# Usage
+## Single Sentence
 ```
 sentence verb objecive secound_objective 
 ```
 
+## Story for sentences
 If you have Storyfile in the repository root
 ```
 storyteller tell 
 ```
+
 
 
 
@@ -81,3 +86,7 @@ In storyteller we have the concepts ( and models ) named "Adverbs", with this,  
 
 # dependecy
 Storyteller cli code generation internally uses the charming {{Mustache}} template engine. 
+
+
+## Setting Project in you environment variables
+if you don't specify a project to run storyteller, it assume it is in one default project that contains every thing in your the top dir
