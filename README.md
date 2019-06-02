@@ -66,11 +66,7 @@ storyteller, server side storyteller, or sentence command, all of them follows t
 in Story below, it skipps the small capitalized words, so it looks very like human readable "story", and makes the verbs as it is supporsed to be.
 Story file's delimiter of the lines are, "." just as in the human readdable texts.
 ```
-users RegistViaWeb User himself.
-System DetectsLocation the Location of the User.
-system shows the SuggestedUsers to the user
-User Posts Follows 
-System RealtimelyDisplays the Tweets of the Users. we call it timeline.
+users RegistViaWeb User himself. System DetectsLocation the Location of the User. system shows the SuggestedUsers to the user. User Posts Follows .System RealtimelyDisplays the Tweets of the Users. we call it timeline. The newly registered user Post a Tweet. then wow! another user Post RetweetTweet ! And the user Get Reply on his screen! what's this ! it's called twitter!
 ```
 We know its are little bit unnatural that some of the verbs has too much explanatory. ( DetectsLocation ) 
 

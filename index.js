@@ -1,14 +1,16 @@
 #!/usr/bin/env node
+console.log(require)
 const minimist = require('minimist')
 require('./setup_path.js')
 
-// console.log(STORYTELLER_BASE)
-// console.log(VERB_BASE)
+console.log(STORYTELLER_BASE)
+console.log(VERB_BASE)
 
-module.exports = () => {
-  const args = minimist(process.argv.slice(2))
+const args = minimist(process.argv.slice(2))
 
-}
+console.log(args)
+
+
 
 
 mustache = require('mustache')

@@ -1,3 +1,0 @@
-
-
-console.log("renderer.js")

@@ -28,11 +28,14 @@
   },
   "homepage": "https://github.com/toukubo/storyteller_cli#readme",
   "dependencies": {
+    "auto_verber": "file:../auto_verber",
     "chalk": "^2.4.2",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
     "commander": "^2.20.0",
     "dotenv": "^8.0.0",
+    "jsonfile": "^5.0.0",
+    "load-json-file": "^6.0.0",
     "minimist": "^1.2.0",
     "mustache": "^3.0.1",
     "shelljs": "^0.8.3"
