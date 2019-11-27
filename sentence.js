@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 
 require('./stacking.js')
+require('./setup_path.js')
 require('./verb.js')
 require('./noun.js')
-require('./sentence.js')
-require('./setup_path.js')
 require('./parse.js')
-require('./sentence_logic.js')
-output = require('./render.js')()
-require('./output.js')
+
+console.log("env.layer mark 2 : ")
+console.dir(LAYER)
 
 
-function render(){
-    return mustache.render(template, model);
-}
+template = verb.template(LAYER);
+// noun = loadNoun(noun)
+var sentence = {}
+
+output = mustache.render(template, noun);
+console.log(output)

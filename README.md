@@ -19,6 +19,14 @@ If you have Storyfile in the repository root
 storyteller tell 
 ```
 
+## configs
+create .env file in the directory. Create one from the sample.env file. 
+layer: the current layer. 
+
+
+storyteller uses .env file, this means you can use environmental variables in the shell if you prefer it. 
+most of the configurational variables in .env are for the project-wide configration, but some variables(e.g, layers) are for the configs. 
+
 
 
 
@@ -36,7 +44,7 @@ verb objecive secound_objective
 ```
 So it should go like
 ```
-users Post Tweets.
+Users Post Tweets.
 ```
 
 
@@ -50,7 +58,8 @@ It contains the verbs. We recommend to do
 clone https://github.com/toukubo/verbs 
 
 it follows the restful directory path convention.
-## sentences location
+## sentences 
+sentence commands create sentences under the directory. 
 $STORYTELLER_BASE/projects/:project_name/sentences/
 
 Each of the sentences  the json and sentences
