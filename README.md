@@ -95,3 +95,10 @@ Storyteller cli code generation internally uses the charming {{Mustache}} templa
 
 ## Setting Project in you environment variables
 if you don't specify a project to run storyteller, it assume it is in one default project that contains every thing in your the top dir
+
+
+
+## interpreters for the farmeworks 
+```
+interpreter_file_path = Conventions.VERB_BASE+"/"+framework+"/"+"interpreter.js"
+```

@@ -12,8 +12,6 @@ class Attr{
         this.name = attr.name
         this.noun = attr.noun
 
-        console.log("this.attrs : ")
-        console.dir(this.attrs)
     }
 }
 module.exports = new Attr()

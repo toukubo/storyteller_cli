@@ -8,7 +8,7 @@ console.log(VERB_BASE)
 
 const args = minimist(process.argv.slice(2))
 
-console.log(args)
+// console.log(args)
 
 
 
@@ -25,4 +25,4 @@ var models = {
 template = "{{title}} spendsssss {{calc}}"
 var output = mustache.render(template, models);
 
-console.log(output)
+ console.log(output)

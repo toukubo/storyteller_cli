@@ -4,8 +4,6 @@ class Noun{
     }
     load(){
         var noun_file_path = Conventions.NOUN_BASE + this.name + ".json"
-        console.info("noun_file_path : ")
-        console.info(noun_file_path)
 
         this.nounObject = {}
         this.nounObject.noun = require(noun_file_path)
