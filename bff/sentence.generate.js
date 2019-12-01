@@ -1,14 +1,19 @@
 #!/usr/bin/env node
+module.exports = function(req){
 
-require('../models/verb.js')
-require('../models/noun.js')
+var Generation =require('../models/generation.js')
+    let generation = new Generation()
+    var sentenceObject = {}
 
-template = verb.template(LAYER);
-var sentence = {}
-
-output = verb.interpret(template,noun)
-
-console.clear();
-process.stdout.write(output);
-
-
+    sentenceObject.verb = req.params.verb_name
+    sentenceObject.noun = req.params.noun_name
+    console.log("sentenceObject : ")
+    console.dir(sentenceObject)
+    
+    // template = verb.template(LAYER);
+    output = generation.interpret(sentenceObject,LAYER)
+     
+    console.clear();
+    process.stdout.write(output);
+    
+}

@@ -12,8 +12,8 @@ console.dir(args)
 
 LAYER = args.layer != undefined?args.layer:LAYER
 
-//set parameters following conventiosn, then custom parameter mapping
-req.parameters  = require('./parameters.js')
+//set params following conventiosn, then custom parameter mapping
+req.params  = require('./parameters.js')
 
 req.bff = false
 let operation  = "create"
@@ -26,12 +26,14 @@ req.operation = operation
 
 
 if(req.command === 'sentence'){
-    req.parameters['verb_name'] = args._[0]
-    req.parameters['noun_name'] = args._[1]
+    req.params['actor_name'] = args._[0]
+    req.params['verb_name'] = args._[1]
+    req.params['noun_name'] = args._[2]
 }
 if(req.command === 'story'||req.command === 'storyteller'){
     if(args._[0]==='tell'){
         req.operation = 'generate'
+        req.command = 'story'
     }
 }
 

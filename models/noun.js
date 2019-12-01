@@ -1,4 +1,7 @@
-class Noun{
+module.exports=class Noun{
+    constructor(name){
+        this.name=name
+    }
     loadByName(name){
 
     }
@@ -8,8 +11,7 @@ class Noun{
         this.nounObject = {}
         this.nounObject.noun = require(noun_file_path)
 
-        
-        this.name=noun.name
+        this.name=this.nounObject.noun.name
         this.attrs = this.nounObject.noun.attrs
 
         // this.attr_ids = noun.attrs
@@ -27,4 +29,3 @@ class Noun{
         // this.nounObject.attrs=attrs;
     }
 }
-module.exports = new Noun()

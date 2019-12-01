@@ -1,16 +1,31 @@
-#!/usr/bin/env node
-require('./stacking.js')
-require('./setup_path.js')
-require('./verb.js')
-require('./noun.js')
-require('./parse.js')
+class Sentence {
+    constructor() {
+        this.sentenceDao = require('../daos/sentence_dao.js')
+    }
+    create(req) {
+        console.log("sentence.create called!!!!!!!!! : ")
+        console.dir(req)
 
-template = verb.template(LAYER);
-var sentence = {}
+        this.jsonObject = {}
+        this.jsonObject.actor = req.params.actor_name
+        this.jsonObject.verb = req.params.verb_name
+        this.jsonObject.noun = req.params.noun_name
+        this.jsonObject.sentence_string = req.params.actor_name + " " + req.params.verb_name + " " + req.params.noun_name
 
-output = verb.interpret(template,noun)
+        this.sentenceDao.save(this.jsonObject)
+        return this.jsonObject
+    }
+    update(id) {
+        console.log("sentence.update called!!!!!!!!! : ")
 
-console.clear();
-process.stdout.write(output);
+    }
+    delete(id) {
 
 
+    }
+    show(id) {
+        this.jsonObject = this.sentenceDao.findById(id)
+        console.stdout.write(this.jsonObject)
+    }
+}
+module.exports = new Sentence()
