@@ -1,6 +1,6 @@
-interpret = function(hay,noun,framework){
+interpret = function (hay, noun, framework) {
     console.log("framework : ")
-console.dir(framework)
+    console.dir(framework)
 
 
     var interpreters = []
@@ -8,7 +8,7 @@ console.dir(framework)
     // get the default interpreter 
     // @todo refator file out
     defaultInterpreter = {}
-    defaultInterpreter._interpret = function(hay,noun){
+    defaultInterpreter._interpret = function (hay, noun) {
         work = mustache.render(hay, noun);
         return mustache.render(hay, noun);
     };
@@ -16,12 +16,12 @@ console.dir(framework)
     interpreters.push(defaultInterpreter)
 
     // layer ( framework ) interpreters ( could be N ? )
-    interpreter_file_path = Conventions.VERB_BASE+"/"+framework+"/"+"interpreter.js"    
+    interpreter_file_path = Conventions.VERB_BASE + "/" + framework + "/" + "interpreter.js"
     interpreters.push(interpreter)
 
-    interpreters.forEach(function(interpreter){
-        hay =  interpreter._interpret(hay,noun)
+    interpreters.forEach(function (interpreter) {
+        hay = interpreter._interpret(hay, noun)
     })
     return hay
 }
-module.exports =  interpret
+module.exports = interpret

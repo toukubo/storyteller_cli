@@ -30,6 +30,7 @@ most of the configurational variables in .env are for the project-wide configrat
 
 
 
+
 # options
 ## storyteller command options
 Storyteller tell storyfile
@@ -102,3 +103,53 @@ if you don't specify a project to run storyteller, it assume it is in one defaul
 ```
 interpreter_file_path = Conventions.VERB_BASE+"/"+framework+"/"+"interpreter.js"
 ```
+
+
+ルーターに上書きマップない場合、そのままコマンドのモデルを呼ぶ。
+sentenceの場合はsentenceを呼ぶ。
+オプションに対しては、そのオプションの意味をルーターでマップ解釈する。
+頭文字＋モデルメソッドにする。
+例：-g generation
+規約では-c = create , -d delete -u update -g get option なし == -c
+-c と-uははjsonを渡せる。
+envにsetする。
+routes.js （呼び出すモデルと関数）は上書きできる
+
+paramのmappingもminimistとかでする。
+　　
+例：sentence Model User -g 
+sentence.generationが呼ばれる。
+
+この場合は規約にない＝BFFとされる。
+BFFの中身のロジックは基本的にスタブのみ吐き出されているので埋める。
+require sentenceし、require nounDao,verb daoする
+nounJson = nounDAO.load(param.noun_name)とかverbも同じに。
+
+
+sentence.generation.jsが呼ばれる（requireされる）
+
+sentence.generation.jsはsentence.create()を読み、
+reuiqre SentenceDao.jsし、
+sentene.create()する。この中身は
+{{#attrs}}
+this.{{name}} == req.{{name}}
+{{/attrs}}
+dao.save()
+だけする。
+
+特殊ルート無ければレストフルな呼び出しとみなしモデルを呼ぶ。
+例：
+sentence Model User 
+これはcreateを呼ぶ。
+
+この場合、引数のパースは？
+restとかのparamとはだいぶ違う省略がある。sentenceの場合、parseをデフォルトと変更。要宣言。
+この引数の特殊形を吸収するのはrouterにかく。sentenceコマンドで-gのオプションの時か、no オプションの時は、-gをつける。-gの時は第二引数をnoun_name=param[2」とするみたいな。
+
+
+sentences generationは？
+
+generation -cは sentenceのnameかidか引数にとると実装される。
+
+
+よしゃこれ作るどー。

@@ -4,7 +4,9 @@
   "description": "Storyteller cli, it works standalone with local data. If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.",
   "main": "index.js",
   "bin": {
-    "sentence": "bin/sentence"
+    "sentence": "bin/sentence",
+    "story": "bin/story",
+    "storyteller": "bin/storyteller"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,6 +32,7 @@
     "chalk": "^2.4.2",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
+    "colors": "^1.4.0",
     "commander": "^2.20.0",
     "dotenv": "^8.0.0",
     "jsonfile": "^5.0.0",
