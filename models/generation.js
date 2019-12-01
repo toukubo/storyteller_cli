@@ -23,8 +23,8 @@ module.exports = class Generation {
     }
 
     interpret(sentenceObject, layer) {
-        console.log("sentenceObject : ")
-        console.dir(sentenceObject)
+        // console.log("sentenceObject : ")
+        // console.dir(sentenceObject)
 
         let Verb = require('../models/verb.js')
         let verb = new Verb(sentenceObject.verb, layer)

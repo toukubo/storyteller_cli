@@ -3,7 +3,7 @@ class Sentence {
         this.sentenceDao = require('../daos/sentence_dao.js')
     }
     create(req) {
-        console.log("sentence.create called!!!!!!!!! : ")
+        // console.log("sentence.create called!!!!!!!!! : ")
         console.dir(req)
 
         this.jsonObject = {}

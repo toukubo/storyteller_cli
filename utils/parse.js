@@ -6,8 +6,8 @@ var fileNameIndex = commandFullPath.lastIndexOf("/") + 1;
 req.command = commandFullPath.substr(fileNameIndex);
 
 args = require('minimist')(process.argv.slice(2))
-console.log("args : ")
-console.dir(args)
+// console.log("args : ")
+// console.dir(args)
 
 
 LAYER = args.layer != undefined?args.layer:LAYER
@@ -23,7 +23,7 @@ operation = args.r?"get":operation
 operation = args.g?"generate":operation
 req.operation = operation
 
-
+req.file=args.f?true:false
 
 if(req.command === 'sentence'){
     req.params['actor_name'] = args._[0]
@@ -39,9 +39,6 @@ if(req.command === 'story'||req.command === 'storyteller'){
 
 
 req.bff=req.operation=='generate'
-
-console.log("req : ")
-console.dir(req)
 
 
 module.exports = req

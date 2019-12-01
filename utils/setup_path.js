@@ -34,11 +34,11 @@ Conventions.SENTENCE_BASE = Conventions.LOCAL_FILE_BASE +"/"+ SENTENCES.ID +"/"
 // should have verbs json and also the templates.... verbs has many files
 Conventions.VERB_BASE = STORYTELLER_BASE + VERBS.ID+"/"
 
-console.log("Target Project : "+PROJECT)
-console.log("PROJECT_BASE : "+Conventions.PROJECT_BASE)
-console.log("NOUN_BASE : " + Conventions.NOUN_BASE)
-console.log("VERB_BASE:"+Conventions.VERB_BASE)
-console.log("SENTENCE_BASE:" +Conventions.SENTENCE_BASE)
+// console.log("Target Project : "+PROJECT)
+// console.log("PROJECT_BASE : "+Conventions.PROJECT_BASE)
+// console.log("NOUN_BASE : " + Conventions.NOUN_BASE)
+// console.log("VERB_BASE:"+Conventions.VERB_BASE)
+// console.log("SENTENCE_BASE:" +Conventions.SENTENCE_BASE)
 
 
 /// # stack
@@ -52,12 +52,12 @@ Stack.bff_api_client=env.axios
 Stack.CLIENT_LANG=env.js
 
 
-console.log("BFF : "+Stack.bff)
-console.log("LOGIC : "+Stack.logic)
-console.log("API_METHOD : "+Stack.api_method)
-console.log("BFF_API_CLIENT : "+Stack.bff_api_client)
-console.log("CLIENT_LANG : "+Stack.CLIENT_LANG)
-console.log("BACKEND : "+Stack.backend)
+// console.log("BFF : "+Stack.bff)
+// console.log("LOGIC : "+Stack.logic)
+// console.log("API_METHOD : "+Stack.api_method)
+// console.log("BFF_API_CLIENT : "+Stack.bff_api_client)
+// console.log("CLIENT_LANG : "+Stack.CLIENT_LANG)
+// console.log("BACKEND : "+Stack.backend)
 
 //defaulting layers_frameworks
 Stack.RESTBASE=Stack.RESTBASE === ''?'local':Stack.RESTBASE
