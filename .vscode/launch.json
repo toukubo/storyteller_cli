@@ -10,8 +10,8 @@
             "request": "launch",
             "runtimeExecutable": "node",
             "name": "Sentence Command",
-            "program": "${workspaceFolder}/sentence.js",
-            "runtimeArgs":["Index","Noun"]
+            "program": "${workspaceFolder}/storyteller.js",
+            "runtimeArgs":["story","tell"]
 
         }
     ]

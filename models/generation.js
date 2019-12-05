@@ -19,12 +19,9 @@ module.exports = class Generation {
     }
     get(id) {
         this.jsonObject = this.generationDao.findById(id)
-        console.stdout.write(this.jsonObject)
     }
 
     interpret(sentenceObject, layer) {
-        // console.log("sentenceObject : ")
-        // console.dir(sentenceObject)
 
         let Verb = require('../models/verb.js')
         let verb = new Verb(sentenceObject.verb, layer)
@@ -37,7 +34,7 @@ module.exports = class Generation {
         var interpreters = []
 
         // get the default interpreter 
-        // @todo refator file out
+        // @todo refator this, file it out
         var defaultInterpreter = {}
         defaultInterpreter._interpret = function (hay, noun) {
             return mustache.render(hay, noun);
@@ -45,7 +42,6 @@ module.exports = class Generation {
 
         interpreters.push(defaultInterpreter)
 
-        // layer ( framework ) interpreters ( could be N ? )
         var interpreter_file_path = process.cwd() + "/verbs/" + verb.jsonObject.framework + "/" + "interpreter.js"
         var layerInterpreter = require(interpreter_file_path)
         interpreters.push(layerInterpreter)

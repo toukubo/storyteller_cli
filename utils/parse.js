@@ -25,6 +25,7 @@ req.operation = operation
 
 req.file=args.f?true:false
 
+
 if(req.command === 'sentence'){
     req.params['actor_name'] = args._[0]
     req.params['verb_name'] = args._[1]

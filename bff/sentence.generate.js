@@ -5,5 +5,5 @@ module.exports = function (req) {
     sentenceObject.verb = req.params.verb_name
     sentenceObject.noun = req.params.noun_name
     output = generation.interpret(sentenceObject, LAYER)
-    process.stdout.write(output);
+console.log(output);
 }

@@ -1,5 +1,4 @@
 module.exports = function (req) {
-    // console.log('story.generate called!!!!!!!!!!!!!!!')
     const sentencesDao = require('../daos/sentence_dao.js')
     let sentences =  sentencesDao.loadAll()
 

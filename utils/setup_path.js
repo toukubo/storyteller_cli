@@ -47,6 +47,7 @@ Stack.restbase=env.RESTBASE
 Stack.bff=env.microjs
 Stack.backend=env.BACKEND
 Stack.logic=env.nodejs
+Stack.cli=env.CLI
 Stack.api_method=env.graphql
 Stack.bff_api_client=env.axios
 Stack.CLIENT_LANG=env.js

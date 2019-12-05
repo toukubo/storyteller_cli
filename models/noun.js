@@ -1,31 +1,29 @@
 module.exports=class Noun{
     constructor(name){
+        this.nounDao = require('../daos/noun_dao.js')
+
         this.name=name
     }
-    loadByName(name){
-
-    }
     load(){
-        var noun_file_path = Conventions.NOUN_BASE + this.name + ".json"
+        this.nounObject = this.nounDao.findByName(this.name)
+        
 
-        this.nounObject = {}
-        this.nounObject.noun = require(noun_file_path)
+        this.name=this.nounObject.name
+        this.lower=this.nounObject.name.toLowerCase()
+        this.attrsJson = this.nounObject.attrs
+        this.attrs = []
+        const Attr = require('./attr.js')
+        // this is for mustach nested models. to reference to the parent model attributes
+        this.attrsJson.forEach(attrJson => {
+            var attr = new Attr(attrJson)
 
-        this.name=this.nounObject.noun.name
-        this.attrs = this.nounObject.noun.attrs
 
-        // this.attr_ids = noun.attrs
-        // this.loadAttrs()
+            attr.noun_name = this.name 
+            attr.noun_lower = this.lower
+            this.attrs.push(attr)
+        });
     }
-    loadAttrs(){
-        // let attr = require('./attr.js')
-        // let attrs = []
-        // this.attr_ids.forEach(function(attr_id){
-        //     attrObject = attr.find(attr_id)
-        //     attrs.push(attrObject)
-        // })
+    loadAll(){
 
-
-        // this.nounObject.attrs=attrs;
     }
 }

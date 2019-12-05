@@ -6,6 +6,8 @@
   "bin": {
     "sentence": "bin/sentence",
     "story": "bin/story",
+    "nouning": "bin/nouning",
+    "verbing": "bin/verbing",
     "storyteller": "bin/storyteller"
   },
   "scripts": {
@@ -28,7 +30,6 @@
   },
   "homepage": "https://github.com/toukubo/storyteller_cli#readme",
   "dependencies": {
-    "auto_verber": "file:../auto_verber",
     "chalk": "^2.4.2",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",

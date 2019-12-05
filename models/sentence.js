@@ -12,6 +12,10 @@ class Sentence {
         this.jsonObject.noun = req.params.noun_name
         this.jsonObject.sentence_string = req.params.actor_name + " " + req.params.verb_name + " " + req.params.noun_name
 
+        nounDao = require('../daos/sentence_dao.js')
+        noun = nounDao.findByN
+
+
         this.sentenceDao.save(this.jsonObject)
         return this.jsonObject
     }
@@ -25,7 +29,7 @@ class Sentence {
     }
     show(id) {
         this.jsonObject = this.sentenceDao.findById(id)
-        console.stdout.write(this.jsonObject)
+        // console.stdout.write(this.jsonObject)
     }
 }
 module.exports = new Sentence()

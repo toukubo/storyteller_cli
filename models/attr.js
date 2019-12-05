@@ -1,17 +1,12 @@
-class Attr{
-    find(id){
-        const object_file_path = Conventions.ATTR_BASE +  + "/" + id + ".json"
-        let attrObject = require(object_file_path)
-        return attrObject
-  
-    }
-    load(){
-        var attr_file_path = Conventions.NOUN_BASE + this.name + ".json"
-        attr = require(attr_file_path)
-        this.type = attr.type
-        this.name = attr.name
-        this.noun = attr.noun
+module.exports =class Attr {
+    constructor(jsonObject) {
+        this.name = jsonObject.name
+        this.type = jsonObject.type
+        this.upper = this.capitalize(this.name)
 
     }
+    capitalize(str) {
+        if (!str || typeof str !== 'string') return str;
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    };
 }
-module.exports = new Attr()
