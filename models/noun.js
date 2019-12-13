@@ -17,8 +17,7 @@ class Noun {
         // this is for mustach nested models. to reference to the parent model attributes
         noun.attrsJson.forEach(attrJson => {
             var attr = Attr.instantiate(attrJson)
-            attr.noun_name = noun.name
-            attr.noun_lower = noun.lower
+            attr.setNoun(noun)
             noun.attrs.push(attr)
         });
 

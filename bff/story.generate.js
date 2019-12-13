@@ -8,7 +8,8 @@ module.exports = function (req) {
 
     sentences.forEach(sentence => {
         req.params.verb_name = sentence.verb
-        req.params.noun_name = sentence.objective
+        req.params.actor_name = sentence.actor
+        req.params.first_objective_name = sentence.objective
         require('./sentence.generate.js')(req)
     });
 }
