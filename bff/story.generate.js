@@ -1,6 +1,10 @@
 module.exports = function (req) {
-    const sentencesDao = require('../daos/sentence_dao.js')
-    let sentences =  sentencesDao.loadAll()
+
+    if(req.params.id !== undefined){
+        //@TODO StoryDao.findById(req.params.id) 
+    }
+    const sentenceDao = require('../daos/sentence_dao.js')
+    let sentences =  sentenceDao.loadAll()
 
     sentences.forEach(sentence => {
         req.params.verb_name = sentence.verb

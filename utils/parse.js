@@ -29,7 +29,7 @@ req.file=args.f?true:false
 if(req.command === 'sentence'){
     req.params['actor_name'] = args._[0]
     req.params['verb_name'] = args._[1]
-    req.params['noun_name'] = args._[2]
+    req.params['first_objective_name'] = args._[2]
 }
 if(req.command === 'story'||req.command === 'storyteller'){
     if(args._[0]==='tell'){

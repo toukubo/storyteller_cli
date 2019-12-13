@@ -21,16 +21,14 @@ module.exports = class Generation {
         this.jsonObject = this.generationDao.findById(id)
     }
 
-    interpret(sentenceObject, layer) {
+    interpret(sentence, layer) {
 
-        let Verb = require('../models/verb.js')
-        let verb = new Verb(sentenceObject.verb, layer)
-        let Noun = require('../models/noun.js')
-        let noun = new Noun(sentenceObject.noun)
-        noun.load()
-        var hay = {};
-
-        hay = verb.template(LAYER)
+        // let verb = require('../models/verb.js')
+        // let verb = verb.instantiate(sentence.verb, layer)
+        // let Noun = require('../models/noun.js')
+        // let noun = new Noun(sentence.noun)
+        // noun.load()
+        var hay = sentence.verb.template(LAYER)
         var interpreters = []
 
         // get the default interpreter 
@@ -39,15 +37,12 @@ module.exports = class Generation {
         defaultInterpreter._interpret = function (hay, noun) {
             return mustache.render(hay, noun);
         };
-
         interpreters.push(defaultInterpreter)
-
-        var interpreter_file_path = process.cwd() + "/verbs/" + verb.jsonObject.framework + "/" + "interpreter.js"
+        var interpreter_file_path = process.cwd() + "/verbs/" + sentence.verb.framework + "/" + "interpreter.js"
         var layerInterpreter = require(interpreter_file_path)
         interpreters.push(layerInterpreter)
-
         interpreters.forEach(function (interpreter) {
-            hay = interpreter._interpret(hay, noun)
+            hay = interpreter._interpret(hay, sentence.first_objective)
         })
         return hay
     }

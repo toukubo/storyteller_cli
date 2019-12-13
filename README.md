@@ -152,4 +152,42 @@ sentences generationは？
 generation -cは sentenceのnameかidか引数にとると実装される。
 
 
-よしゃこれ作るどー。
+よしゃこれ作るどー。　-> DONE!
+thigns above are the spec! but 
+
+# Verbinfg
+
+make a verb from clipboard content, using the nouns and attrs in the project.
+also this takesd the "sample" project. it contains the common sample code you can find the blogs, github, or read codes.
+
+## use cases
+### from clipboard inside of your current project
+example usage
+``` example usage
+verbing Create --framework=nodejs
+```
+show up : 
+https://cl.ly/c662e2
+it's like 
+telling things for the ppl
+
+### from web, 
+
+
+### from github
+it would go like
+1. you can publish your sample templates, https://github.com/USER/PROJECT/.storyteller/verbs/ in github.
+2. developers can integrate the code in storyteller hub.
+
+
+
+
+# Storyteller Hub
+1. publish code in github. ~/.storyteller/ directory.
+2. storyteller generates the pages for your verbs ( templates ), in https://hub.storyteller.com/USER/PROJECT/verbs/, with the original template, and the sample code with filled with your nouns. 
+This means, you, a OSS author, can show your sample to public, at the same time you can give the template snippet that is changed to the project code ( of those who uses your library )
+
+3. using package manager, just npm it. 
+4. run sentence the_verb the-layer and your noun -> the code. 
+
+
