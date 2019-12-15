@@ -2,9 +2,25 @@ class Sentence {
     constructor() {
         this.sentenceDao = require('../daos/sentence_dao.js')
     }
+    findById(id){
+        var sentenceJson = this.sentenceDao.findById(id)
+        var sentence = this.instantiate(sentenceJson)
+        return sentence
+    }
+    templates(){
+        var templates = []
+        this.frameworks.forEach(framework => {
+            var template = require('../models/template.js')
+            template = template.findById(framework.json.template)
+            templates.push(template)
+        });
+        return templates
+    }
 
     instantiate(jsonObject) {
         var sentence = new Sentence()
+
+        sentence.json = jsonObject
 
         let noun = require('../models/noun.js')
         sentence.actor = noun.findByName(jsonObject.actor)
@@ -14,12 +30,25 @@ class Sentence {
 
         let first_objective = noun.findByName(jsonObject.objective)
         sentence.first_objective = first_objective
-    
+
+        sentence.id = sentence.json.id
+
+        sentence.frameworks = []
+
+        var Framework = require('./framework.js')
+        jsonObject.frameworks.forEach(frameworkJson => {
+            var framework = Framework.instantiate(frameworkJson)
+            sentence.frameworks.push(framework)
+        });
+        console.log("frameworks : ")
+console.dir(sentence.frameworks)
+
         // var sentence = require('../models/sentence.js')
         return sentence
     }
     findBySentenceName(name) {
         var sentenceJson = this.sentenceDao.findByName(name)
+
         var sentence = this.instantiate(sentenceJson)
         return sentence
     }

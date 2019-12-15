@@ -1,10 +1,34 @@
 class SentenceDao {
-    findById() {
-        return jsonObject
+    findById(id) {
+
+        var sentences = this.loadAll()
+        var returned = {}
+        sentences.forEach(sentenceJson => {
+            if (sentenceJson.id === id) {
+                returned = sentenceJson
+            }
+        });
+        console.log("returned : ")
+console.dir(returned)
+
+        return returned
     }
     findByName(name) {
-        var sentenceJson = require(process.cwd() + '/sentences/' + name + '.json');
-        return sentenceJson
+
+        var sentences = this.loadAll()
+        var returned = {}
+        sentences.forEach(sentenceJson => {
+            if (sentenceJson.sentence_string === name) {
+                returned = sentenceJson
+            }
+        });
+        return returned
+
+        console.log("aaaaaaaaaa!!!!")
+
+
+        // var sentenceJson = require(process.cwd() + '/sentences/' + name + '.json');
+        // return sentenceJson
     }
     save() {
 

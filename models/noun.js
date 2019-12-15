@@ -29,11 +29,12 @@ class Noun {
         var json = this.nounDao.findByName(name)
         return this.instantiate(json)
     }
-    load() {
-
-
-
+    findById(id) {
+        
+        var json = this.nounDao.findById(id)
+        return this.instantiate(json)
     }
+
     loadAll() {
         this.nounsJson = this.nounDao.loadAll()
 
