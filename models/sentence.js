@@ -2,19 +2,14 @@ class Sentence {
     constructor() {
         this.sentenceDao = require('../daos/sentence_dao.js')
     }
-    findById(id){
+    findById(id) {
         var sentenceJson = this.sentenceDao.findById(id)
         var sentence = this.instantiate(sentenceJson)
         return sentence
     }
-    templates(){
-        var templates = []
-        this.frameworks.forEach(framework => {
-            var template = require('../models/template.js')
-            template = template.findById(framework.json.template)
-            templates.push(template)
-        });
-        return templates
+    templates() {
+        var template = require('./template.js')
+        return template.find(this)
     }
 
     instantiate(jsonObject) {
@@ -24,24 +19,28 @@ class Sentence {
 
         let noun = require('../models/noun.js')
         sentence.actor = noun.findByName(jsonObject.actor)
-        
+
         let verb = require('../models/verb.js')
-        sentence.verb = verb.instantiate(jsonObject.verb,LAYER)
+        sentence.verb = verb.findByName(jsonObject.verb)
 
         let first_objective = noun.findByName(jsonObject.objective)
         sentence.first_objective = first_objective
 
+        var project = require('./project.js')
+        sentence.project = project.findById(jsonObject.project)
+
+        sentence.layers = []
+        // sentence.layers = jsonObject.layers
+        var frameworkClass = require('./framework.js')
+        if(sentence.layers === undefined || sentence.layers.length === 0){
+            sentence.project.frameworks.forEach(frameworkJson => {
+                var framework = frameworkClass.findById(frameworkJson)
+                sentence.layers = sentence.layers.concat(framework.layers)
+            });
+            sentence.layers === sentence.project.layers
+        }
+
         sentence.id = sentence.json.id
-
-        sentence.frameworks = []
-
-        var Framework = require('./framework.js')
-        jsonObject.frameworks.forEach(frameworkJson => {
-            var framework = Framework.instantiate(frameworkJson)
-            sentence.frameworks.push(framework)
-        });
-        console.log("frameworks : ")
-console.dir(sentence.frameworks)
 
         // var sentence = require('../models/sentence.js')
         return sentence
@@ -75,7 +74,7 @@ console.dir(sentence.frameworks)
     }
     toSentenceString(actor, verb, first_objective, adjective) {
         var string = actor + " " + verb + " " + first_objective
-        string = adjective!==undefined?string+ " "+adjective:string
+        string = adjective !== undefined ? string + " " + adjective : string
         return string
 
     }

@@ -5,23 +5,18 @@ module.exports = class Generation {
     create(req) {
         this.jsonObject = {}
         this.jsonObject.sentence = req.params.sentence
-        console.log("req.params.sentence : ")
-console.dir(req.params.sentence)
-
 
         var sentence = require('./sentence.js')
         this.sentence = sentence.findById(this.jsonObject.sentence)
-        console.log("this.sentence : ")
-console.dir(this.sentence)
-
-
         this.templates = this.sentence.templates()
+        console.log("this.templates : ")
+console.dir(this.templates)
 
 
-        this.interpretAllTemplates()
+        this.generated = this.interpretAllTemplates()
+        console.log("the generation : ")
+console.dir(this)
 
-        // this.jsonObject.generatedText = this.generatedText
-        // this.jsonObject.file_path = this.file_path
         this.generationDao.save(this.jsonObject)
     }
     update(id) {
@@ -37,9 +32,11 @@ console.dir(this.sentence)
         this.jsonObject = this.generationDao.findById(id)
     }
     interpretAllTemplates(){
+        var generated = []
         this.templates.forEach(template => {
-            this.interpret(template)
+            generated.push(this.interpret(template))
         });
+        return generated
     }
 
     interpret(template) {
@@ -60,21 +57,31 @@ console.dir(this.sentence)
             return mustache.render(hay, noun);
         };
         interpreters.push(defaultInterpreter)
-        var interpreter_file_path = process.cwd() + "/verbs/" + this.sentence.verb.framework + "/" + "interpreter.js"
+        var frameworkClass = require('./framework.js')
+        let framework = frameworkClass.findById(template.framework)
+        console.log("framework : ")
+console.dir(framework)
+
+        var interpreter_file_path = process.cwd() + "/verbs/" + framework.name + "/" + "interpreter.js"
         var layerInterpreter = require(interpreter_file_path)
         interpreters.push(layerInterpreter)
         var sentence = this.sentence
+        console.log("sentence : ")
+console.dir(sentence)
+
         interpreters.forEach(function (interpreter) {
             hay = interpreter._interpret(hay, sentence.first_objective)
             file_path = interpreter._interpret(file_path, sentence.first_objective)
         })
         template.generatedText = hay
         template.generated_file_path = file_path
+        return template
     }
     print(){
         console.log(this.generatedText)
     }
     placement(){
+
         var placement = require('./placement.js')
         placement.generation = this // no. @TODO
         // 
