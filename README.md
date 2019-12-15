@@ -88,7 +88,9 @@ In storyteller we can generate multiple Sentences using Adverbs. Adverbs REQUIRE
 In storyteller we have the concepts ( and models ) named "Adverbs", with this,  we can have the "
 
 
-# template
+# templates
+
+# storyteller hub
 
 # dependecy
 Storyteller cli code generation internally uses the charming {{Mustache}} template engine. 
