@@ -47,7 +47,7 @@ class Placement {
     placeAGenerated(generated){
 
         // in the file
-        const gitpath = "~/"
+        const gitpath = "/Users/toukubo/"
         // var basepath = process.cwd() + "/generated"
         var basepath = gitpath+"/"+generated.sentence.project.name
         let file_path = generated.file_path
@@ -63,8 +63,6 @@ class Placement {
         fs.writeFileSync(full_path,generated.text, null, 2)
     }
     create(req){
-        
-        
         this.generation.generateds.forEach(generated => {
             this.placeAGenerated(generated)
         });
