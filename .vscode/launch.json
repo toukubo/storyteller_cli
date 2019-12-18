@@ -5,13 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         
+
+        
         {
             "type": "node",
+            "cwd": "/Users/toukubo/storyteller_core/",
             "request": "launch",
             "runtimeExecutable": "node",
             "name": "Sentence Command",
             "program": "${workspaceFolder}/storyteller.js",
-            "runtimeArgs":["story","tell"]
+            "runtimeArgs":["--debug"]
+            // "runtimeArgs":["Developer Model Generation -g -f -command=sentence"]
 
         }
     ]
