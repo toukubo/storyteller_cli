@@ -8,30 +8,48 @@ class Noun {
 
         noun.json = json
 
-        noun.name = noun.json.name
-        noun.lower = noun.json.name.toLowerCase()
-        noun.attrsJson = noun.json.attrs
-        noun.attrs = []
+        noun.description = noun.json.description
 
-        const Attr = require('./attr.js')
-        // this is for mustach nested models. to reference to the parent model attributes
-        noun.attrsJson.forEach(attrJson => {
-            var attr = Attr.instantiate(attrJson)
-            attr.setNoun(noun)
-            noun.attrs.push(attr)
+        // this is for nested models. to reference to the description model nounibutes
+        noun.descriptionsJson = noun.json.descriptions
+        noun.descriptions = []
+        noun.descriptionsJson.forEach(descriptionJson => {
+            const Description = require('./description.js')
+            var description = Description.instantiate(descriptionJson)
+            description.setNoun(description)
+            noun.descriptions.push(description)
         });
+        noun.name = noun.json.name
 
+        // this is for nested models. to reference to the name model nounibutes
+        noun.namesJson = noun.json.names
+        noun.names = []
+        noun.namesJson.forEach(nameJson => {
+            const Name = require('./name.js')
+            var name = Name.instantiate(nameJson)
+            name.setNoun(name)
+            noun.names.push(name)
+        });
         return noun
 
     }
-    findByName(name) {
+
+    create(req){
+        var description = require('../models/description.js')
+        this.description = description.findById(this.jsonObject.description)
+        var name = require('../models/name.js')
+        this.name = name.findById(this.jsonObject.name)
+    }
+
+
+    findByDescription(description) {
         
-        var json = this.nounDao.findByName(name)
+        var json = this.NounDao.findByDescription(description)
         return this.instantiate(json)
     }
-    findById(id) {
+    findByName(name) {
         
-        var json = this.nounDao.findById(id)
+        var json = this.NounDao.findByName(name)
         return this.instantiate(json)
     }
 
@@ -39,11 +57,11 @@ class Noun {
         this.nounsJson = this.nounDao.loadAll()
 
         var nouns = []
-        var NounClass = new Noun()
+        let nounClass = new Noun()
 
-        this.nounsJson.forEach(nounJson => {
+        this.NounsJson.forEach(NounJson => {
             
-            let noun = NounClass.instantiate(nounJson)
+            let noun = nounClass.instantiate(NounJson)
             nouns.push(noun)
         });
         return nouns
