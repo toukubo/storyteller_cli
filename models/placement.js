@@ -44,19 +44,30 @@ class Placement {
         return placement
 
     }
-    create(req){
-        var basepath = "/Users/toukubo/storyteller_cli/test/"
-        
-        var file_path = basepath+"/"+this.generation.file_path
-        var path = require('path');
-        var directory =  path.dirname(file_path);
+    placeAGenerated(generated){
 
-        // file generate to the place.file
-        if (!fs.existsSync(directory)){
+        // in the file
+        const gitpath = "~/"
+        // var basepath = process.cwd() + "/generated"
+        var basepath = gitpath+"/"+generated.sentence.project.name
+        let file_path = generated.file_path
+        let path = require('path');
+        let relative_dir_path =  path.dirname(file_path);
+        let dir_full_path = basepath+"/"+relative_dir_path
+        let full_path = basepath+"/"+file_path
+        // file generate to the pl  ace.file
+        if (!fs.existsSync(dir_full_path)){
             var shell = require('shelljs');
-            shell.mkdir('-p',directory)
+            shell.mkdir('-p',dir_full_path)
         }
-        fs.writeFileSync(file_path,this.generation.generatedText, null, 2)
+        fs.writeFileSync(full_path,generated.text, null, 2)
+    }
+    create(req){
+        
+        
+        this.generation.generateds.forEach(generated => {
+            this.placeAGenerated(generated)
+        });
     }
 
     findByGeneration(generation) {

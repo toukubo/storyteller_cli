@@ -12,7 +12,7 @@
             "cwd": "/Users/toukubo/storyteller_core/",
             "request": "launch",
             "runtimeExecutable": "node",
-            "name": "Sentence Command",
+            "name": "Storyteller",
             "program": "${workspaceFolder}/storyteller.js",
             "runtimeArgs":["--debug"]
             // "runtimeArgs":["Developer Model Generation -g -f -command=sentence"]

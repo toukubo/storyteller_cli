@@ -9,13 +9,8 @@ module.exports = class Generation {
         var sentence = require('./sentence.js')
         this.sentence = sentence.findById(this.jsonObject.sentence)
         this.templates = this.sentence.templates()
-        console.log("this.templates : ")
-console.dir(this.templates)
+        this.generateds = this.interpretAllTemplates()
 
-
-        this.generated = this.interpretAllTemplates()
-        console.log("the generation : ")
-console.dir(this)
 
         this.generationDao.save(this.jsonObject)
     }
@@ -32,11 +27,13 @@ console.dir(this)
         this.jsonObject = this.generationDao.findById(id)
     }
     interpretAllTemplates(){
-        var generated = []
+        var generateds = []
         this.templates.forEach(template => {
-            generated.push(this.interpret(template))
+            var generated = this.interpret(template)
+            generated.sentence = this.sentence
+            generateds.push(generated)
         });
-        return generated
+        return generateds
     }
 
     interpret(template) {
@@ -45,9 +42,6 @@ console.dir(this)
         var hay = template.text
         var interpreters = []
 
-        // template.text
-        
-        // var file_path = "models/{{lower}}.js"
         var file_path = template.file_path
 
         // get the default interpreter 
@@ -70,9 +64,11 @@ console.dir(this)
             hay = interpreter._interpret(hay, sentence.first_objective)
             file_path = interpreter._interpret(file_path, sentence.first_objective)
         })
-        template.generatedText = hay
-        template.generated_file_path = file_path
-        return template
+        var generated = {}
+        generated.text  = hay
+        generated.template = template
+        generated.file_path = file_path
+        return generated
     }
     print(){
         this.generated.forEach(generated => {
@@ -83,9 +79,9 @@ console.dir(this)
     placement(){
 
         var placement = require('./placement.js')
-        placement.generation = this // no. @TODO
-            // 
-        placement.create()
+        placement.generation = this // no. @TODO the placement should load the placement.  and generation should record all the info through dao
+        placement.create(req)
+            // placement.()
     }
 
 }
