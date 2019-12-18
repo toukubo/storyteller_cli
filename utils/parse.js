@@ -6,9 +6,18 @@ var fileNameIndex = commandFullPath.lastIndexOf("/") + 1;
 req.command = commandFullPath.substr(fileNameIndex);
 
 args = require('minimist')(process.argv.slice(2))
-// console.log("args : ")
-// console.dir(args)
+if(process.execArgv[0]==="--debug"){
+    let application_path = process.argv[1]
+    let path = require('path')
+    let application_dir = path.dirname(application_path)
+    var args_text = fs.readFileSync(application_dir+'/.debug', 'utf-8')
+    var args_splited = args_text.split(" ")
+    req.command = args_splited.shift()
+    // var new_args =  args_splited.filter(n,index => index !== 0)
+    args_text = args_splited.join(' ')
 
+    args = require('minimist')(args_splited)
+}
 
 LAYER = args.layer != undefined?args.layer:LAYER
 

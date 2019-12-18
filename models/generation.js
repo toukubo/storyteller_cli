@@ -59,15 +59,12 @@ console.dir(this)
         interpreters.push(defaultInterpreter)
         var frameworkClass = require('./framework.js')
         let framework = frameworkClass.findById(template.framework)
-        console.log("framework : ")
-console.dir(framework)
 
         var interpreter_file_path = process.cwd() + "/verbs/" + framework.name + "/" + "interpreter.js"
         var layerInterpreter = require(interpreter_file_path)
         interpreters.push(layerInterpreter)
         var sentence = this.sentence
-        console.log("sentence : ")
-console.dir(sentence)
+
 
         interpreters.forEach(function (interpreter) {
             hay = interpreter._interpret(hay, sentence.first_objective)
@@ -78,13 +75,16 @@ console.dir(sentence)
         return template
     }
     print(){
-        console.log(this.generatedText)
+        this.generated.forEach(generated => {
+            console.log(generated.generatedText)
+            
+        });
     }
     placement(){
 
         var placement = require('./placement.js')
         placement.generation = this // no. @TODO
-        // 
+            // 
         placement.create()
     }
 
