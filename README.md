@@ -1,7 +1,5 @@
 # storyteller_cli
 
-Storyteller cli, it works standalone with local data. If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.
-
 # install
 ```
 npm install storyteller_cli -g
@@ -20,10 +18,6 @@ story tell -g
 ```
 
 
-
-
-
-
 ## configs
 create .env file in the directory. Create one from the sample.env file. 
 layer: the current layer. 
@@ -33,16 +27,11 @@ storyteller uses .env file, this means you can use environmental variables in th
 most of the configurational variables in .env are for the project-wide configration, but some variables(e.g, layers) are for the configs. 
 
 
-
-
 # general usage 
-Storyteller needs Nouns and Attrs. 
-1. Create nouns and Attrs
-2. Projects
-3. Project layers 
-4. Project frameworks 
-5. Choose base stack
-6. Make story and. Choose sentences if not 
+Storyteller cli works standalone with local data. 
+If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.
+It expect the 
+
 
 
 
