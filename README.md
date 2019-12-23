@@ -16,8 +16,13 @@ sentence verb objecive secound_objective
 ## Story for sentences
 If you have Storyfile in the repository root
 ```
-storyteller tell 
+story tell -g
 ```
+
+
+
+
+
 
 ## configs
 create .env file in the directory. Create one from the sample.env file. 
@@ -30,13 +35,29 @@ most of the configurational variables in .env are for the project-wide configrat
 
 
 
+# general usage 
+Storyteller needs Nouns and Attrs. 
+1. Create nouns and Attrs
+2. Projects
+3. Project layers 
+4. Project frameworks 
+5. Choose base stack
+6. Make story and. Choose sentences if not 
+
+
 
 # options
+## General Optuons 
+-g generation. If you run sentence, story command without -g option it just creates sentence and story to the backend ( or local data repo )
+-f file. It create the generated files into the file/files. 
+
 ## storyteller command options
-Storyteller tell storyfile
+story tell -id=:id 
 as defualt, storyteller tell takes Story file in the repository root.
 you can specify the Storyfile path.
 ## sentence command options
+
+
 
 # Story
 It just contains the list of the sentence. storyteller cli calls "sentence" command to each of the sentences
@@ -88,9 +109,7 @@ In storyteller we can generate multiple Sentences using Adverbs. Adverbs REQUIRE
 In storyteller we have the concepts ( and models ) named "Adverbs", with this,  we can have the "
 
 
-# templates
-
-# storyteller hub
+# template
 
 # dependecy
 Storyteller cli code generation internally uses the charming {{Mustache}} template engine. 
