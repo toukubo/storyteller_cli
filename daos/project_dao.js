@@ -1,73 +1,12 @@
 
 class ProjectDao{
-
-    findByCore(core){
-        var file_path = process.cwd()+"/projects/" +  core + ".json"
+    findById(id){
+        var file_path = process.cwd()+"/rest/projects/" +  id + ".json"
         this.jsonObject = {}
         var jsonObject = require(file_path)
         return jsonObject
     }
-    findByDescription(description){
-        var file_path = process.cwd()+"/projects/" +  description + ".json"
-        this.jsonObject = {}
-        var jsonObject = require(file_path)
-        return jsonObject
-    }
-    findByStoryteller_branch_name(storyteller_branch_name){
-        var file_path = process.cwd()+"/projects/" +  storyteller_branch_name + ".json"
-        this.jsonObject = {}
-        var jsonObject = require(file_path)
-        return jsonObject
-    }
-    findByName(name){
-        var file_path = process.cwd()+"/projects/" +  name + ".json"
-        this.jsonObject = {}
-        var jsonObject = require(file_path)
-        return jsonObject
-    }
-    findByRepository_name(repository_name){
-        var file_path = process.cwd()+"/projects/" +  repository_name + ".json"
-        this.jsonObject = {}
-        var jsonObject = require(file_path)
-        return jsonObject
-    }
-    findByRepository_user_name(repository_user_name){
-        var file_path = process.cwd()+"/projects/" +  repository_user_name + ".json"
-        this.jsonObject = {}
-        var jsonObject = require(file_path)
-        return jsonObject
-    }
-
-    findByCore(Core){
-        projects = this.loadAll()
-        var found = {}
-        projects.forEach(project => {
-            if( project.core === core ){
-                found = project
-            }
-        });
-        return found
-    }
-    findByDescription(Description){
-        projects = this.loadAll()
-        var found = {}
-        projects.forEach(project => {
-            if( project.description === description ){
-                found = project
-            }
-        });
-        return found
-    }
-    findByStoryteller_branch_name(Storyteller_branch_name){
-        projects = this.loadAll()
-        var found = {}
-        projects.forEach(project => {
-            if( project.storyteller_branch_name === storyteller_branch_name ){
-                found = project
-            }
-        });
-        return found
-    }
+   
     findByName(Name){
         projects = this.loadAll()
         var found = {}

@@ -1,6 +1,10 @@
-
 class FrameworkDao{
-
+    findById(id){
+        var file_path = process.cwd()+"/rest/frameworks/" +  id + ".json"
+        this.jsonObject = {}
+        var jsonObject = require(file_path)
+        return jsonObject
+    }
     findByTag(tag){
         var file_path = process.cwd()+"/frameworks/" +  tag + ".json"
         this.jsonObject = {}

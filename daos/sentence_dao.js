@@ -8,8 +8,6 @@ class SentenceDao {
                 returned = sentenceJson
             }
         });
-        console.log("returned : ")
-console.dir(returned)
 
         return returned
     }
@@ -23,12 +21,6 @@ console.dir(returned)
             }
         });
         return returned
-
-        console.log("aaaaaaaaaa!!!!")
-
-
-        // var sentenceJson = require(process.cwd() + '/sentences/' + name + '.json');
-        // return sentenceJson
     }
     save() {
 
