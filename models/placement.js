@@ -57,8 +57,7 @@ class Placement {
         let full_path = basepath+"/"+file_path
         // file generate to the pl  ace.file
         if (!fs.existsSync(dir_full_path)){
-            var shell = require('shelljs');
-            shell.mkdir('-p',dir_full_path)
+            var shell = require('shelljs').mkdir('-p',dir_full_path);
         }
         fs.writeFileSync(full_path,generated.text, null, 2)
     }

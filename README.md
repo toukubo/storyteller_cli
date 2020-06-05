@@ -5,6 +5,18 @@
 npm install storyteller_cli -g
 ```
 
+# setup
+```
+mkdir yourproject_core
+cd yourproject_core
+storyteller init
+```
+or just copy and paste the core files. 
+
+
+
+
+
 # Usage
 ## Single Sentence
 ```
@@ -178,8 +190,6 @@ verbing Create --framework=nodejs
 ```
 show up : 
 https://cl.ly/c662e2
-it's like 
-telling things for the ppl
 
 ### from web, 
 

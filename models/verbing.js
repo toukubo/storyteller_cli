@@ -16,7 +16,7 @@ class Verbing {
         }
         var noun = require('./noun.js')
         this.nouns = noun.loadAll()
-        // console.log(Object.values(this.nouns))
+        console.log(Object.values(this.nouns))
         var regexes = {}
 
         this.nouns.forEach(noun => {
@@ -33,13 +33,14 @@ class Verbing {
             this.hay = this.hay.replace(regex, replaced)
             
         });
+        console.log(this.hay)
 
         // the determination on the verb thing ? 
-        var verb = require('./verb.js')
-        verb = verb.instantiate(req.verb_name, req.layer)
-        verb.template = this.hay
-        verb.saveTemplate()
-        // developer was there 
+        // var verb = require('./verb.js')
+        // verb = verb.instantiate(req.verb_name, req.layer)
+        // verb.template = this.hay
+
+        // verb.saveTemplate()
 
         // this.verbingDao.save(this.jsonObject)
     }

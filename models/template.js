@@ -6,11 +6,6 @@ class Template {
         var templates = this.loadAll()
         const filtered = []
         templates.forEach(template => {
-//             console.log("template : ")
-// console.dir(template)
-// console.log("sentence : ")
-// console.dir(sentence)
-
             if (sentence.verb.id === template.verb) {
                 sentence.layers.forEach(layer => {
                     if (template.layer === layer) {
@@ -19,12 +14,8 @@ class Template {
                 });
             }
         });
-        console.log("filtered : ")
-        console.dir(filtered)
-
         return filtered
     }
-
 
     instantiate(json) {
         var template = new Template()
