@@ -106,11 +106,20 @@ We know its are little bit unnatural that some of the verbs has too much explana
 In the modern software, we need to have some similar, but different screens and features. It is strongly recommended you use the common shared classes/methods to do this, however, storyteller allows you to do make similar features ( == Sentences ) in a project. As you can see in the Story, we have some multiple sentences that differs form each other slightly. Most of the ases, each of the those features has "different attributes". A good example for this is, "editing credentials of the users" and "editing the profile of the users". Usually the restful backend has the "patch command" but we should call 2 ways of patches to follow this scenario. User changes his profile very casually in a "casual edit page" and more carefully for the credentials, maybe followed by some logic to check the password, or password reset features ( and sentences ).
 
 In storyteller we can generate multiple Sentences using Adverbs. Adverbs REQUIRED to follow after the Objectives. 
-
 In storyteller we have the concepts ( and models ) named "Adverbs", with this,  we can have the "
 
 
-# template
+# base verb
+## modelとcreateやof説などのnest
+base 的なファイル（クラスのmodelやdaoなど
+
+
+
+# sentence layers
+1. sentence.layersを埋める(backendがairbtaleとかならairtbaleでそのlayersを選んで埋める）
+2. 
+
+
 
 # dependecy
 Storyteller cli code generation internally uses the charming {{Mustache}} template engine. 
@@ -118,6 +127,15 @@ Storyteller cli code generation internally uses the charming {{Mustache}} templa
 
 ## Setting Project in you environment variables
 if you don't specify a project to run storyteller, it assume it is in one default project that contains every thing in your the top dir
+
+## frmeworkを設定する
+1. project level framework ( project.framework ）作る
+2. project level framework のframework.includeのfarmeworkを設定する
+3. internal ( inlcuded framework )をfromででオリジナルfarmeworksを作る
+
+# template
+1. システムが自動でfromからfarmeworkと、framework.templatesをコピーして作成
+2. fromした独自frameworkの独自templatesを実装する( verbing )
 
 
 
@@ -168,14 +186,9 @@ sentence Model User
 restとかのparamとはだいぶ違う省略がある。sentenceの場合、parseをデフォルトと変更。要宣言。
 この引数の特殊形を吸収するのはrouterにかく。sentenceコマンドで-gのオプションの時か、no オプションの時は、-gをつける。-gの時は第二引数をnoun_name=param[2」とするみたいな。
 
-
 sentences generationは？
 
 generation -cは sentenceのnameかidか引数にとると実装される。
-
-
-よしゃこれ作るどー。　-> DONE!
-thigns above are the spec! but 
 
 # Verbinfg
 
