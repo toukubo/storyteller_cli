@@ -19,14 +19,6 @@ class Framework {
         // this is for nested models. to reference to the included model frameworkibutes
         framework.includedsJson = framework.json.includeds
         framework.includeds = []
-        // if(framework.includedsJson !== undefined){
-        //     framework.includedsJson.forEach(includedJson => {
-        //         const Included = require('./included.js')
-        //         var included = Included.instantiate(includedJson)
-        //         included.setFramework(included)
-        //         framework.includeds.push(included)
-        //     });
-        //     }
         framework.layers = framework.json.layers
 
         framework.official = framework.json.official
