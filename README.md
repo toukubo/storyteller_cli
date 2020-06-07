@@ -1,50 +1,63 @@
 # storyteller_cli
 
-# install
-```
+## General Development Flow
+
+### Create Projects
+
+1. project name, github urlなどを設定する
+2. local environmental setup for the storyteller enable project. projectにstorytellerを有効にする
+3. core projectを作成する
+4. 管理対象プロジェクト（実プロジェクト）を作成する
+
+管理対象プロジェクト：実際のプロジェクト
+the actual project that you wanna run and code. 
+core project : storytellerではあるprojectに関するモデル、
+
+in storyteller, we use the models, it's attrutes, features, use cases, scenarios, api specs, and code itself, are managed in the meta way. so those management contents are in the core project. so you have to make this too. 
+
+#### storyteller cli のinstall
+
+```bash
 npm install storyteller_cli -g
 ```
 
-# setup
-```
-mkdir yourproject_core
-cd yourproject_core
-storyteller init
-```
-or just copy and paste the core files. 
+#### Config CLI
+
+##### what happends internal of this 'init'
+
+1. create .env file in the directory. Create one from the sample.env file.
+2. it set the DEFAULTS from the backend settings. syncing form the stgoryteller backends.
+
+most of the configurational variables in .env are for the project-wide configration, but some variables(e.g, layers) are for the configs. 
+
+### Create and Set Project Frmeworks 
+
+1. Project 画面にて frameworks を新規作成する
+2. 作成したframeworkについて framework.from にbaseとなるframeworkを設定する
+通常、rails,nodejs,graphql,といった大規模粒度のフレームワークから、api-mode-rails, restfull-rails,airtable-plusといったframeworkを選択します。storytellerにおいてはアプリケーションは個別に「framework」でありすべての個別のプロジェクト、ソフトウェアは「規約の集合体」を所有します。一般的なフレームワークの規約を拡張子、独自の規約を暗黙的に定義していますが、storytellerにおいてはこのframeworkの規約定義を明示的に所有することでその規約とコードにもとづき実装コード生成が行われます。（詳細は  Frameworksを参照）
+
+## Framework Templatesの作成
+
+1. システムが自動で、fromからfarmeworkと、framework.templatesをコピーして作成
+2. fromした独自frameworkの独自templatesを実装する( verbing )
 
 
+# framework
+FrameworkはDockerに影響を受けた構造をもちます。
+Frameworks has the similar strcturte, influeneced with Docker a lot, 
+it can extends the templates layers using "from" based framework.
+in storyteller, the framework is the collectoins of hte template layers. when a framework extneds another frameoworkg using from, similarily to the docker, the framework can use the Templates of the Framework. 
 
 
-
-# Usage
-## Single Sentence
-```
-sentence verb objecive secound_objective 
-```
-
-## Story for sentences
+### Story for sentences
 If you have Storyfile in the repository root
 ```
 story tell -g
 ```
 
 
-## configs
-create .env file in the directory. Create one from the sample.env file. 
-layer: the current layer. 
-
-
-storyteller uses .env file, this means you can use environmental variables in the shell if you prefer it. 
-most of the configurational variables in .env are for the project-wide configration, but some variables(e.g, layers) are for the configs. 
-
-
-# general usage 
-Storyteller cli works standalone with local data. 
+* Storyteller cli works standalone with local data. 
 If you wanna use storyteller backends, install and configure the storyteller backend tools to your client. It syncs the client nouns, verbs, to your backend.
-It expect the 
-
-
 
 
 # options
@@ -74,6 +87,9 @@ Users Post Tweets.
 to the objective  ( and secound_objective ) , use nouns
 
 
+
+
+
 # Environmental variables
 ## $VERBBASE
 default: ~/.verbs/
@@ -90,6 +106,35 @@ Each of the sentences  the json and sentences
 The sentence
 
 project_name is REQUIRED to be identical,alphanumeric. usually it assumes the github repository names.
+
+### Story for sentences
+If you have Storyfile in the repository root
+```
+story tell -g
+
+
+## setup
+
+```bash
+mkdir yourproject_core
+cd yourproject_core
+storyteller init
+```
+
+or just copy and paste the core files. 
+
+## Usage
+
+### Single Sentence Usecase
+
+```bash
+sentence verb objecive secound_objective 
+```
+
+
+
+
+
 ## arguments and parse convernsions
 storyteller, server side storyteller, or sentence command, all of them follows this method. As a design philosophy the storyteller follows "human readable story with some tips of the conventions, it parses the software scenario ( = story ) and turns it into the software that runs on the modern, architecture. so there are some small conventions for the parsing. 
 * it is Case sensitive. 
@@ -127,15 +172,6 @@ Storyteller cli code generation internally uses the charming {{Mustache}} templa
 
 ## Setting Project in you environment variables
 if you don't specify a project to run storyteller, it assume it is in one default project that contains every thing in your the top dir
-
-## frmeworkを設定する
-1. project level framework ( project.framework ）作る
-2. project level framework のframework.includeのfarmeworkを設定する
-3. internal ( inlcuded framework )をfromででオリジナルfarmeworksを作る
-
-# template
-1. システムが自動でfromからfarmeworkと、framework.templatesをコピーして作成
-2. fromした独自frameworkの独自templatesを実装する( verbing )
 
 
 
@@ -211,6 +247,7 @@ https://cl.ly/c662e2
 it would go like
 1. you can publish your sample templates, https://github.com/USER/PROJECT/.storyteller/verbs/ in github.
 2. developers can integrate the code in storyteller hub.
+
 
 
 
