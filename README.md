@@ -41,12 +41,21 @@ most of the configurational variables in .env are for the project-wide configrat
 1. システムが自動で、fromからfarmeworkと、framework.templatesをコピーして作成
 2. fromした独自frameworkの独自templatesを実装する( verbing )
 
+## create your own new framework for the thirdparty
+
+e.g. some serivces like cloudsing ( an 3rd party service works which follow some basic conventions like restful )
+例：cloudsign のような外部サービスであるが、一定の規約（RESTful）の場合
+
+1. Creating a new framework. and name it 'cloudsign'. frameworkを新規作成し、"cloudsign"と命名.
+2. Set 'from' with the 'restful api', on the cloudsign framework you made. 新規作成したcloudsign frameworkに対し、"from"にrestful を設定してください。
+3. 
 
 # framework
-FrameworkはDockerに影響を受けた構造をもちます。
+
 Frameworks has the similar strcturte, influeneced with Docker a lot, 
 it can extends the templates layers using "from" based framework.
 in storyteller, the framework is the collectoins of hte template layers. when a framework extneds another frameoworkg using from, similarily to the docker, the framework can use the Templates of the Framework. 
+FrameworkはDockerに影響を受けた構造をもちます。
 
 
 ### Story for sentences
