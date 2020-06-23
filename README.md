@@ -106,6 +106,12 @@ It contains the verbs. We recommend to do
 clone https://github.com/toukubo/verbs 
 
 it follows the restful directory path convention.
+
+
+
+
+
+
 ## sentences 
 sentence commands create sentences under the directory. 
 $STORYTELLER_BASE/projects/:project_name/sentences/
@@ -270,3 +276,64 @@ This means, you, a OSS author, can show your sample to public, at the same time 
 4. run sentence the_verb the-layer and your noun -> the code. 
 
 
+
+
+# verb bases
+
+## the Conclusion 
+
+### templates code
+
+* we expect the template codes exists in http://github.com/account/framework.id/template.id.extention, and tries to download the code from there. 
+* if Templates is not in the url above, then it takes code from Airtable Template.code. ( in the rest backend ). 
+* or if not in template.code, fail. 
+
+
+
+## pros and cons on the storage methods
+
+### verbs templates in git 
++ the templates are ABLE TO grow ( diffs and commits ) 
++ easy to verb ? 
+- meta data not stored in the GitHub
+	- path
++ can be used as a storyteller hub template format ? 
+
+Like if 
+
+```
+app/controllers/UserCotrollers.rb
+app/models/User.rb
+.storyteller/controller/rails-controller-base.js
+.storyteller/dao/nodejs-cli model-Model.js
+
+
+.storyteller/dao/dao_base.js
+.storyteller/dao/nodejs-cli model-Model.js
+
+
+```
+
+
+### verbs tamplate code in the Template backend as object data ? 
++ meta data in relational db
++ in the Airtable GUI
+
+### both, and sync
+
+#### the runtime for the git and Airtable backend
+
+##### from git to Airtable ? 
+
+1. 
+2. Diff
+- [ ] the meta-tree of the Templates and the "Actual" templates should be synced partially ? 
+	- [ ] the partial templates relationship
+		- [ ] the Inclusion ( use ) relationships
+		- [ ] concrete / general ( generalization ) relationships
+- [ ] the "included mapped" collection SHOULD be treated. 	
+
+#### Airtable 2 git ( flat file ) 
+
+
+- [ ] how to take the diff.

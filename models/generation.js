@@ -75,7 +75,8 @@ module.exports = class Generation {
             console.log(generated.generatedText)
             
         });
-    }
+    }74
+    
     placement(){
 
         var placement = require('./placement.js')

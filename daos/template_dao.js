@@ -1,5 +1,7 @@
+const { findById } = require('./framework_dao.js')
+
 class TemplateDao {
-    loadText(layer,verb) {
+    loadText(layer, verb) {
         // @TODO for retrieving 
         var template = require('../models/template.js')
         var layerDao = require('../daos/layer_dao.js')
@@ -10,6 +12,53 @@ class TemplateDao {
         var text = fs.readFileSync(file_path, 'utf-8');
         return text
     }
+    loadText(framework_name, template_name) {
+        const file_path = process.cwd() + '/templates/' + framework_name + '/' + template_name
+        if (fs.existsSync(file_path)) {
+            console.debug(file_path)
+            console.debug(": is file_path")
+
+            const text = fs.readFileSync(file_path, 'utf-8');
+            return text
+        }
+        return null
+    }
+    findByIds(ids) {
+        json_array = []
+        ids.forEach(id => {
+            json_array.push(findById(id))
+        });
+        return ids
+    }
+
+    of(sentence) {
+        const verbDao = require('./verb_dao.js')
+        const frameworkDao = require('./framework_dao.js')
+
+        const verb = verbDao.findById(sentence.verb)
+        const frameworks = frameworkDao.of(sentence.noun)
+
+        const layers = layer
+
+        const filtered = of(verb, frameworks, layers)
+        return filtered
+    }
+
+
+
+
+    of(verb, frameworks, layers) {
+        var templates = this.loadAll()
+        templates.filter()
+        var found = {}
+        templates.forEach(template => {
+            if (template.verb === verb && template.framework === framework.id) {
+                found = template
+            }
+        });
+        return found
+    }
+
 
     findByVerbAndFramework(verb, framework) {
         // var verbDao = require('./verb_dao.js')

@@ -1,4 +1,12 @@
 class FrameworkDao{
+
+    findByNoun(noun_id){
+        var file_path = process.cwd()+"/rest/frameworks/" +  id + ".json"
+        this.jsonObject = {}
+        var jsonObject = require(file_path)
+        return jsonObject
+    }
+
     findById(id){
         var file_path = process.cwd()+"/rest/frameworks/" +  id + ".json"
         this.jsonObject = {}
@@ -29,6 +37,11 @@ class FrameworkDao{
         var jsonObject = require(file_path)
         return jsonObject
     }
+
+    of(noun){
+        return this.loadAll().filter(framework => framework.word===noun.id)
+    }
+    
 
     findByTag(Tag){
         frameworks = this.loadAll()
@@ -74,16 +87,16 @@ class FrameworkDao{
     loadAll() {
         var fs = require('fs');
         var s = []
-        var Files = fs.readdirSync(process.cwd() + '/s/');
+        var frameworksFiles = fs.readdirSync(process.cwd() + '/frameworkss/');
 
-        sFiles.forEach(File => {
-            if (File.endsWith(".json")) {
-                var jsonObject = require(process.cwd() + '/s/' + File)
-                s.push(jsonObject)
+        frameworksFiles.forEach(frameworkFile => {
+            if (frameworkFile.endsWith(".json")) {
+                var jsonObject = require(process.cwd() + '/frameworks/' + frameworkFile)
+                frameworks.push(jsonObject)
             }
 
         });
-        return s
+        return frameworks
     }
 
 }
