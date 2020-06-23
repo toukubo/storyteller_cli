@@ -2,31 +2,21 @@ class Template {
     constructor() {
         this.templateDao = require('../daos/template_dao.js')
     }
-    find(sentence) {
-        var templates = this.loadAll()
-        const filtered = []
-        templates.forEach(template => {
-            if (sentence.verb.id === template.verb) {
-                sentence.layers.forEach(layer => {
-                    if (template.layer === layer) {
-                        filtered.push(template)
-                    }
-                });
-            }
-        });
-        return filtered
-    }
+
+
 
     instantiate(json) {
+
         var template = new Template()
 
         template.json = json
 
         template.framework = template.json.framework[0]
+        // frameworkDao
         template.file_path = template.json.file_path
         template.verb = template.json.verb[0]
         template.layer = json.layer[0]
-        template.text = this.templateDao.loadText(template.layer,template.verb)
+        template.text = this.templateDao.loadText(json.framework.name)
 
         return template
 
@@ -34,6 +24,11 @@ class Template {
 
     create(req) {}
 
+    findByVerbAndFrameworkAndLayer(verb, framework,layer) {
+
+        var json = this.templateDao.findByVerbAndFramework(verb, framework)
+        return this.instantiate(json)
+    }
 
     findByVerbAndFramework(verb, framework) {
 

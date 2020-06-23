@@ -9,13 +9,15 @@ class Sentence {
     }
     templates() {
         var template = require('./template.js')
-        return template.find(this)
+        return template.findBy(this)
     }
 
     instantiate(jsonObject) {
         var sentence = new Sentence()
 
         sentence.json = jsonObject
+
+        console.debug(jsonObject)
 
         let noun = require('../models/noun.js')
         sentence.actor = noun.findByName(jsonObject.actor)
@@ -46,6 +48,8 @@ class Sentence {
         return sentence
     }
     findBySentenceName(name) {
+        console.debug(name)
+        console.debug("is the name")
         var sentenceJson = this.sentenceDao.findByName(name)
 
         var sentence = this.instantiate(sentenceJson)
@@ -75,6 +79,7 @@ class Sentence {
     toSentenceString(actor, verb, first_objective, adjective) {
         var string = actor + " " + verb + " " + first_objective
         string = adjective !== undefined ? string + " " + adjective : string
+        console.debug(string)
         return string
 
     }
@@ -97,7 +102,6 @@ class Sentence {
 
     }
     delete(id) {
-
 
     }
     show(id) {
