@@ -36,19 +36,14 @@ class Template {
         return this.instantiate(json)
     }
 
-
-    loadAll() {
-        this.templatesJson = this.templateDao.loadAll()
-
-        var templates = []
-        let templateClass = new Template()
-
-        this.templatesJson.forEach(templateJson => {
-
-            let template = templateClass.instantiate(templateJson)
-            templates.push(template)
+    instantiate(templatesJson){
+        // let templateClass = new Template()
+        return this.templatesJson.map(function(templateJson){
+            return instantiate(templateJson)
         });
-        return templates
+    }
+    loadAll() {
+        return instantiate ( this.templateDao.loadAll())
     }
 }
 module.exports = new Template()

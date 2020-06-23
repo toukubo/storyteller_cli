@@ -8,7 +8,7 @@ class Sentence {
         return sentence
     }
     templates() {
-        var template = require('./template.js')
+        var Templates = require('../daos/templates.js')
         return template.findBy(this)
     }
 
@@ -47,14 +47,7 @@ class Sentence {
         // var sentence = require('../models/sentence.js')
         return sentence
     }
-    findBySentenceName(name) {
-        console.debug(name)
-        console.debug("is the name")
-        var sentenceJson = this.sentenceDao.findByName(name)
-
-        var sentence = this.instantiate(sentenceJson)
-        return sentence
-    }
+    
     findByObjects(actor, verb, first_objective, secound_objective) {
         var sentence_string = this.toSentenceString(actor.name, verb.name, first_objective.name)
 

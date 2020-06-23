@@ -1,8 +1,9 @@
 module.exports = function (req) {
-
-    var sentence = require('../models/sentence.js')
     console.debug(req)
-    sentence = sentence.findBySentenceName(sentence.toSentenceString(req.params.actor_name,req.params.verb_name,req.params.first_objective_name))
+
+    const Sentences = require('../daos/sentence_dao.js')
+    const SentenceClass = require('../models/sentence.js')
+    let sentence = SentenceClass.instantiate(Sentences.findBySentenceName(SentenceClass.toSentenceString(req.params.actor_name,req.params.verb_name,req.params.first_objective_name)))
 
     req.params.sentence = sentence.id
     var Generation = require('../models/generation.js')

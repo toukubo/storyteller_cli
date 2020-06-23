@@ -38,8 +38,8 @@ class FrameworkDao{
         return jsonObject
     }
 
-    of(noun){
-        return this.loadAll().filter(framework => framework.word===noun.id)
+    of(noun_id){
+        return this.loadAll().filter(framework => framework.word===noun_id)
     }
     
 

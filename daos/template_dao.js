@@ -2,7 +2,6 @@ const { findById } = require('./framework_dao.js')
 
 class TemplateDao {
     loadText(layer, verb) {
-        // @TODO for retrieving 
         var template = require('../models/template.js')
         var layerDao = require('../daos/layer_dao.js')
         var verbDao = require('../daos/verb_dao.js')
@@ -32,31 +31,26 @@ class TemplateDao {
     }
 
     of(sentence) {
-        const verbDao = require('./verb_dao.js')
-        const frameworkDao = require('./framework_dao.js')
 
-        const verb = verbDao.findById(sentence.verb)
-        const frameworks = frameworkDao.of(sentence.noun)
+        const Verbs = require('./verb_dao.js')
+        const Frameworks = require('./framework_dao.js')
 
-        const layers = layer
+        const verb = Verbs.findById(sentence.verb)
+        const frameworks = Frameworks.of(sentence.noun)
 
-        const filtered = of(verb, frameworks, layers)
+        const filtered = of(verb, frameworks)
         return filtered
+
     }
 
-
-
-
-    of(verb, frameworks, layers) {
-        var templates = this.loadAll()
-        templates.filter()
-        var found = {}
-        templates.forEach(template => {
-            if (template.verb === verb && template.framework === framework.id) {
-                found = template
-            }
-        });
-        return found
+    of(verb, frameworks) {
+        let templates_of_a_verb = of(verb)
+        return templates_of_a_verb.filter(function(template){
+            return frameworks.filter(framework => framework.template===template).length>0
+        })
+    }
+    of(verb){
+        return this.loadAll().filter(template => template.verb===verb)
     }
 
 
