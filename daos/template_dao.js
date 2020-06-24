@@ -30,45 +30,41 @@ class TemplateDao {
         return ids
     }
 
-    of(sentence) {
+    ofASentence(sentence_id) {
 
         const Verbs = require('./verb_dao.js')
         const Frameworks = require('./framework_dao.js')
+        const Sentences = require('./sentence_dao.js')
+        const sentence = Sentences.findById(sentence_id)
 
-        const verb = Verbs.findById(sentence.verb)
-        const frameworks = Frameworks.of(sentence.noun)
+        const verb = Verbs.findByName(sentence.verb)
 
-        const filtered = of(verb, frameworks)
-        return filtered
-
+        var frameworks = Frameworks.ofANoun(sentence.objective)
+        if (frameworks.length === 0 && sentence.project!==undefined) {
+            frameworks = Frameworks.ofTheProject(sentence.project[0])
+        }
+        const filteredTemplates = this.ofAVerbAndFrameworks(verb.id, frameworks)
+        return filteredTemplates
     }
 
-    of(verb, frameworks) {
-        let templates_of_a_verb = of(verb)
-        return templates_of_a_verb.filter(function(template){
-            return frameworks.filter(framework => framework.template===template).length>0
+    ofAVerbAndFrameworks(verb_id, frameworks) {
+        let templates_of_a_verb = this.ofAVerb(verb_id)
+        return templates_of_a_verb.filter(function (template) {
+            var i = 0;
+            const frameworks_of_the_template =  frameworks.filter(function (framework) {
+               return framework.id === template.framework[0]
+            })
+            return frameworks_of_the_template.length>0
         })
     }
-    of(verb){
-        return this.loadAll().filter(template => template.verb===verb)
-    }
+    ofAVerb(verb_id) {
 
 
-    findByVerbAndFramework(verb, framework) {
-        // var verbDao = require('./verb_dao.js')
-        // let verbJson = verbDao.findById(verb)
-        // var frameworkDao = require('./framework_dao.js')
-        // let frameworkJson = frameworkDao.findById() 
-        var templates = this.loadAll()
-        var found = {}
-        templates.forEach(template => {
-            if (template.verb === verb && template.framework === framework.id) {
-                found = template
-            }
-        });
-        return found
+
+        return this.loadAll().filter(template => template.verb[0] === verb_id)
     }
-    findByVerb(tag) {
+
+    ofATag(tag) {
         var file_path = process.cwd() + "/templates/" + tag + ".json"
         this.jsonObject = {}
         var jsonObject = require(file_path)

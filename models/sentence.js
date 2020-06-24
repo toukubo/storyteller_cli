@@ -8,8 +8,11 @@ class Sentence {
         return sentence
     }
     templates() {
-        var Templates = require('../daos/templates.js')
-        return template.findBy(this)
+        var Templates = require('../daos/template_dao.js')
+        console.debug(Templates)
+console.debug(": is Templates dao in sentence.template()")
+
+        return Templates.of(this.json.id)
     }
 
     instantiate(jsonObject) {
@@ -17,7 +20,6 @@ class Sentence {
 
         sentence.json = jsonObject
 
-        console.debug(jsonObject)
 
         let noun = require('../models/noun.js')
         sentence.actor = noun.findByName(jsonObject.actor)
@@ -32,7 +34,7 @@ class Sentence {
         sentence.project = project.findById(jsonObject.project)
 
         sentence.layers = []
-        // sentence.layers = jsonObject.layers
+
         var frameworkClass = require('./framework.js')
         if(sentence.layers === undefined || sentence.layers.length === 0){
             sentence.project.frameworks.forEach(frameworkJson => {
@@ -44,7 +46,6 @@ class Sentence {
 
         sentence.id = sentence.json.id
 
-        // var sentence = require('../models/sentence.js')
         return sentence
     }
     
@@ -72,7 +73,6 @@ class Sentence {
     toSentenceString(actor, verb, first_objective, adjective) {
         var string = actor + " " + verb + " " + first_objective
         string = adjective !== undefined ? string + " " + adjective : string
-        console.debug(string)
         return string
 
     }

@@ -8,8 +8,7 @@ module.exports = function (req) {
     req.params.sentence = sentence.id
     var Generation = require('../models/generation.js')
     let generation = new Generation()
-    // generation.interpret(sentence, LAYER)
-    generation.create(req)
+    generation.create(sentence)
     if(req.file){
         generation.placement()
 

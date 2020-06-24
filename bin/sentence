@@ -1,4 +1,3 @@
 #!/usr/bin/env node
-console.log("mark 0")
 require('../storyteller.js')
 

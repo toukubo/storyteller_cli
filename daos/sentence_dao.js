@@ -26,10 +26,7 @@ class SentenceDao {
 
     }
     findBySentenceName(name) {
-        console.debug(name)
-        console.debug("is the name")
         var sentenceJson = this.findByName(name)
-
         return sentenceJson
     }
     loadAll() {

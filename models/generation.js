@@ -2,14 +2,16 @@ module.exports = class Generation {
     constructor() {
         this.generationDao = require('../daos/generation_dao.js')
     }
-    create(req) {
-        this.jsonObject = {}
-        this.jsonObject.sentence = req.params.sentence
+    create(sentence) {
+        this.sentence = sentence
 
-        var sentence = require('./sentence.js')
-        this.sentence = sentence.findById(this.jsonObject.sentence)
-        this.templates = this.sentence.templates()
+        const Templates = require('../daos/template_dao.js')
+        this.templates = Templates.ofASentence(sentence.id)
+        console.debug(this.templates)
+        console.log("this.templates")
         this.generateds = this.interpretAllTemplates()
+        console.debug(this.generateds)
+        console.log("this.generateds")
 
 
         this.generationDao.save(this.jsonObject)
@@ -71,6 +73,8 @@ module.exports = class Generation {
         return generated
     }
     print(){
+        console.debug(this.generated)
+        console.debug("this.generated")
         this.generated.forEach(generated => {
             console.log(generated.generatedText)
             
