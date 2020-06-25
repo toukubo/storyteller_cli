@@ -3,8 +3,6 @@ class Template {
         this.templateDao = require('../daos/template_dao.js')
     }
 
-
-
     instantiate(json) {
 
         var template = new Template()
@@ -17,6 +15,7 @@ class Template {
         template.verb = template.json.verb[0]
         template.layer = json.layer[0]
         template.text = this.templateDao.loadText(json.framework.name)
+        template.text = json.code
 
         return template
 
@@ -36,10 +35,10 @@ class Template {
         return this.instantiate(json)
     }
 
-    instantiate(templatesJson){
+    instantiateAll(templatesJson){
         // let templateClass = new Template()
-        return this.templatesJson.map(function(templateJson){
-            return instantiate(templateJson)
+        return templatesJson.map(function(templateJson){
+            return new Template().instantiate(templateJson)
         });
     }
     loadAll() {

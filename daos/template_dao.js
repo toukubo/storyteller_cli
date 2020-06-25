@@ -1,21 +1,13 @@
-const { findById } = require('./framework_dao.js')
+const { findById } = require('./framework_dao.js');
+const { domain } = require('process');
 
 class TemplateDao {
-    loadText(layer, verb) {
-        var template = require('../models/template.js')
-        var layerDao = require('../daos/layer_dao.js')
-        var verbDao = require('../daos/verb_dao.js')
-        var verbJson = verbDao.findById(verb)
-        var layerJson = layerDao.findById(layer)
-        let file_path = process.cwd() + '/templates/' + layerJson.name + "/" + verbJson.name
-        var text = fs.readFileSync(file_path, 'utf-8');
-        return text
-    }
+
     loadText(framework_name, template_name) {
-        const file_path = process.cwd() + '/templates/' + framework_name + '/' + template_name
-        if (fs.existsSync(file_path)) {
-            console.debug(file_path)
-            console.debug(": is file_path")
+        const file_path = process.cwd() + '/frameworks/' + framework_name + '/' + template_name
+        console.debug(file_path)
+        console.debug(": is file_path")
+    if (fs.existsSync(file_path)) {
 
             const text = fs.readFileSync(file_path, 'utf-8');
             return text
@@ -58,9 +50,6 @@ class TemplateDao {
         })
     }
     ofAVerb(verb_id) {
-
-
-
         return this.loadAll().filter(template => template.verb[0] === verb_id)
     }
 
@@ -135,10 +124,24 @@ class TemplateDao {
         var templates = []
         var templatesFiles = fs.readdirSync(process.cwd() + '/rest/templates/');
 
+
+
         templatesFiles.forEach(File => {
             if (File.endsWith(".json")) {
-                var jsonObject = require(process.cwd() + '/rest/templates/' + File)
-                templates.push(jsonObject)
+                var templateJsonObject = require(process.cwd() + '/rest/templates/' + File)
+                console.debug(templateJsonObject)
+console.debug(": is templateJsonObject")
+                const Frameworks = require('../daos/framework_dao.js')
+                const framework_of_the_template = Frameworks.findById(templateJsonObject.framework)
+
+                    templateJsonObject.code = this.loadText(framework_of_the_template.id_string,templateJsonObject.name)
+                if(templateJsonObject.code!==null){
+                    console.debug(templateJsonObject)
+console.debug(": is templateJsonObject found !!!!!!!!!!!!!!!!!!!!!")
+
+
+                    templates.push(templateJsonObject)
+                }
             }
 
         });
