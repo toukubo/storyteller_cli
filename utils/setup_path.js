@@ -34,13 +34,6 @@ Conventions.SENTENCE_BASE = Conventions.LOCAL_FILE_BASE +"/"+ SENTENCES.ID +"/"
 // should have verbs json and also the templates.... verbs has many files
 Conventions.VERB_BASE = STORYTELLER_BASE + VERBS.ID+"/"
 
-// console.log("Target Project : "+PROJECT)
-// console.log("PROJECT_BASE : "+Conventions.PROJECT_BASE)
-// console.log("NOUN_BASE : " + Conventions.NOUN_BASE)
-// console.log("VERB_BASE:"+Conventions.VERB_BASE)
-// console.log("SENTENCE_BASE:" +Conventions.SENTENCE_BASE)
-
-
 /// # stack
 Stack = {}
 Stack.restbase=env.RESTBASE

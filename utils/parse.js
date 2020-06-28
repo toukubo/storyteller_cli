@@ -7,6 +7,8 @@ req.command = commandFullPath.substr(fileNameIndex);
 
 args = require('minimist')(process.argv.slice(2))
 if(process.execArgv[0]==="--debug"){
+console.debug("--debug ==========================================")
+
     let application_path = process.argv[1]
     let path = require('path')
     let application_dir = path.dirname(application_path)

@@ -8,10 +8,7 @@ module.exports = class Generation {
         const Templates = require('../daos/template_dao.js')
         const TemplateClass = require('./template.js')
         this.templates = TemplateClass.instantiateAll(Templates.ofASentence(sentence.id))
-
         this.generateds = this.interpretAllTemplates()
-
-
         this.generationDao.save(this.jsonObject)
     }
     update(id) {
@@ -33,7 +30,7 @@ module.exports = class Generation {
             generated.sentence = this.sentence
             generateds.push(generated)
         });
-        return generateds
+        return generateds.length>0?generateds:null
     }
 
     interpret(template) {
@@ -62,23 +59,23 @@ module.exports = class Generation {
         }
         var sentence = this.sentence
 
-
         interpreters.forEach(function (interpreter) {
             hay = interpreter._interpret(hay, sentence.first_objective)
             file_path = interpreter._interpret(file_path, sentence.first_objective)
         })
         var generated = {}
-        generated.text  = hay
+        generated.code  = hay
         generated.template = template
         generated.file_path = file_path
         return generated
     }
     print(){
-        this.generated.forEach(generated => {
-            console.log(generated.generatedText)
-
-        });
-    }74
+        if(this.generateds!==null){
+            this.generateds.forEach(generated => {
+                console.info(generated.code)
+            });
+        }
+    }
     
     placement(){
 

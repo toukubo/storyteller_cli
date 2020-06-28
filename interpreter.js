@@ -1,8 +1,4 @@
 interpret = function (hay, noun, framework) {
-    console.log("framework : ")
-    console.dir(framework)
-
-
     var interpreters = []
 
     // get the default interpreter 

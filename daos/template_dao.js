@@ -5,9 +5,7 @@ class TemplateDao {
 
     loadText(framework_name, template_name) {
         const file_path = process.cwd() + '/frameworks/' + framework_name + '/' + template_name
-        console.debug(file_path)
-        console.debug(": is file_path")
-    if (fs.existsSync(file_path)) {
+        if (fs.existsSync(file_path)) {
 
             const text = fs.readFileSync(file_path, 'utf-8');
             return text
@@ -32,10 +30,13 @@ class TemplateDao {
         const verb = Verbs.findByName(sentence.verb)
 
         var frameworks = Frameworks.ofANoun(sentence.objective)
-        if (frameworks.length === 0 && sentence.project!==undefined) {
+
+        if (frameworks.length === 0 && sentence.project !== undefined) {
             frameworks = Frameworks.ofTheProject(sentence.project[0])
+
         }
         const filteredTemplates = this.ofAVerbAndFrameworks(verb.id, frameworks)
+
         return filteredTemplates
     }
 
@@ -43,10 +44,10 @@ class TemplateDao {
         let templates_of_a_verb = this.ofAVerb(verb_id)
         return templates_of_a_verb.filter(function (template) {
             var i = 0;
-            const frameworks_of_the_template =  frameworks.filter(function (framework) {
-               return framework.id === template.framework[0]
+            const frameworks_of_the_template = frameworks.filter(function (framework) {
+                return framework.id === template.framework[0]
             })
-            return frameworks_of_the_template.length>0
+            return frameworks_of_the_template.length > 0
         })
     }
     ofAVerb(verb_id) {
@@ -123,23 +124,15 @@ class TemplateDao {
         var fs = require('fs');
         var templates = []
         var templatesFiles = fs.readdirSync(process.cwd() + '/rest/templates/');
-
-
-
+        
         templatesFiles.forEach(File => {
             if (File.endsWith(".json")) {
                 var templateJsonObject = require(process.cwd() + '/rest/templates/' + File)
-                console.debug(templateJsonObject)
-console.debug(": is templateJsonObject")
                 const Frameworks = require('../daos/framework_dao.js')
                 const framework_of_the_template = Frameworks.findById(templateJsonObject.framework)
 
-                    templateJsonObject.code = this.loadText(framework_of_the_template.id_string,templateJsonObject.name)
-                if(templateJsonObject.code!==null){
-                    console.debug(templateJsonObject)
-console.debug(": is templateJsonObject found !!!!!!!!!!!!!!!!!!!!!")
-
-
+                templateJsonObject.code = this.loadText(framework_of_the_template.id_string, templateJsonObject.name)
+                if (templateJsonObject.code !== null) {
                     templates.push(templateJsonObject)
                 }
             }

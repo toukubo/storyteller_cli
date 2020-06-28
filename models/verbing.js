@@ -16,7 +16,6 @@ class Verbing {
         }
         var noun = require('./noun.js')
         this.nouns = noun.loadAll()
-        console.log(Object.values(this.nouns))
         var regexes = {}
 
         this.nouns.forEach(noun => {

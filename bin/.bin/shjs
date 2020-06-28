@@ -9,8 +9,6 @@ if (require.main !== module) {
 require('../global');
 
 function exitWithErrorMessage(msg) {
-  console.log(msg);
-  console.log();
   process.exit(1);
 }
 

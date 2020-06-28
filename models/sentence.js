@@ -9,13 +9,10 @@ class Sentence {
     }
     templates() {
         var Templates = require('../daos/template_dao.js')
-        console.debug(Templates)
-console.debug(": is Templates dao in sentence.template()")
-
         return Templates.of(this.json.id)
     }
 
-    instantiate(jsonObject) {
+instantiate(jsonObject) {
         var sentence = new Sentence()
 
         sentence.json = jsonObject
@@ -61,8 +58,6 @@ console.debug(": is Templates dao in sentence.template()")
 
 
         if (sentence.attrs !== undefined) {
-            console.log("sentence.attrs !== undefined : ")
-            console.dir(sentence.attrs !== undefined)
             // this.first_objective = 
 
         }
