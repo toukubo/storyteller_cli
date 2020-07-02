@@ -14,8 +14,8 @@
             "runtimeExecutable": "node",
             "name": "Storyteller",
             "program": "${workspaceFolder}/storyteller.js",
-            "runtimeArgs":["--debug"]
-            // "runtimeArgs":["Developer Model Generation -g -f -command=sentence"]
+            "runtimeArgs":["--debug Developer Model Generation -g -f"]
+            // "runtimeArgs":["Developer Model Generation -g -f -command=sentence "]
 
         }
     ]

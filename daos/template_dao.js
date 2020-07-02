@@ -33,7 +33,6 @@ class TemplateDao {
 
         if (frameworks.length === 0 && sentence.project !== undefined) {
             frameworks = Frameworks.ofTheProject(sentence.project[0])
-
         }
         const filteredTemplates = this.ofAVerbAndFrameworks(verb.id, frameworks)
 

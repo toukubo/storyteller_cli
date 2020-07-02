@@ -32,7 +32,7 @@ class Verbing {
             this.hay = this.hay.replace(regex, replaced)
             
         });
-        console.log(this.hay)
+        // console.log(this.hay)
 
         // the determination on the verb thing ? 
         // var verb = require('./verb.js')

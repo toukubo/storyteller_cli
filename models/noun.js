@@ -7,8 +7,7 @@ class Noun {
         var noun = new Noun()
 
         noun.json = json
-        console.debug(noun.json)
-console.debug(": is noun.json")
+
 
 
         noun.name = noun.json.name

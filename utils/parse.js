@@ -2,12 +2,13 @@
 var req = {}
 
 let commandFullPath  = process.argv[1]
+
 var fileNameIndex = commandFullPath.lastIndexOf("/") + 1;
 req.command = commandFullPath.substr(fileNameIndex);
 
 args = require('minimist')(process.argv.slice(2))
+
 if(process.execArgv[0]==="--debug"){
-console.debug("--debug ==========================================")
 
     let application_path = process.argv[1]
     let path = require('path')
@@ -41,6 +42,8 @@ if(req.command === 'sentence'){
     req.params['actor_name'] = args._[0]
     req.params['verb_name'] = args._[1]
     req.params['first_objective_name'] = args._[2]
+    req.sentence_string=args._.join(' ')
+
 }
 if(req.command === 'story'||req.command === 'storyteller'){
     if(args._[0]==='tell'){

@@ -20,6 +20,7 @@ instantiate(jsonObject) {
 
         let noun = require('../models/noun.js')
         sentence.actor = noun.findByName(jsonObject.actor)
+        
 
         let verb = require('../models/verb.js')
         sentence.verb = verb.findByName(jsonObject.verb)

@@ -12,11 +12,10 @@ class SentenceDao {
         return returned
     }
     findByName(name) {
-
         var sentences = this.loadAll()
         var returned = {}
         sentences.forEach(sentenceJson => {
-            if (sentenceJson.sentence_string === name) {
+            if (sentenceJson.sentence_string.trim() === name) {
                 returned = sentenceJson
             }
         });
@@ -25,7 +24,7 @@ class SentenceDao {
     save() {
 
     }
-    findBySentenceName(name) {
+findBySentenceName(name) {
         var sentenceJson = this.findByName(name)
         return sentenceJson
     }
@@ -34,7 +33,7 @@ class SentenceDao {
         var sentences = []
         var sentencesFiles = fs.readdirSync(process.cwd() + '/sentences/');
         sentencesFiles.forEach(sentenceFile => {
-            if (sentenceFile.endsWith(".json")) {
+            if (sentenceFile.endsWith(".json") && sentenceFile !=='.json') {
                 var sentenceJsonObject = require(process.cwd() + '/sentences/' + sentenceFile)
                 sentences.push(sentenceJsonObject)
             }

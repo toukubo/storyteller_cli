@@ -8,6 +8,7 @@ module.exports = class Generation {
         const Templates = require('../daos/template_dao.js')
         const TemplateClass = require('./template.js')
         this.templates = TemplateClass.instantiateAll(Templates.ofASentence(sentence.id))
+
         this.generateds = this.interpretAllTemplates()
         this.generationDao.save(this.jsonObject)
     }
