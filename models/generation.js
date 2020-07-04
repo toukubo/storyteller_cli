@@ -26,6 +26,7 @@ module.exports = class Generation {
     }
     interpretAllTemplates(){
         var generateds = []
+
         this.templates.forEach(template => {
             var generated = this.interpret(template)
             generated.sentence = this.sentence
@@ -38,6 +39,7 @@ module.exports = class Generation {
 
         // var hay = this.sentence.verb.template.text(LAYER)
         var hay = template.text
+
         var interpreters = []
 
         var file_path = template.file_path
@@ -46,7 +48,10 @@ module.exports = class Generation {
         // @todo refator this, file it out
         var defaultInterpreter = {}
         defaultInterpreter._interpret = function (hay, noun) {
-            return mustache.render(hay, noun);
+            if(hay!==undefined){
+                return mustache.render(hay, noun);
+            }
+            return ""
         };
         interpreters.push(defaultInterpreter)
         var frameworkClass = require('./framework.js')
