@@ -2,6 +2,10 @@
 
 ## General Development Flow
 
+### model
+![models](https://p357.p1.n0.cdn.getcloudapp.com/items/qGuNqx95/Image%202020-09-01%20at%2010.16.56%20PM.png?v=d3adf2bcb306e9f0e7f67ca9b23dd022)
+
+
 ### Create Projects
 
 1. project name, github urlなどを設定する
