@@ -1,3 +1,5 @@
+const { exit } = require('shelljs')
+
 module.exports = function (req) {
 
     const Sentences = require('../daos/sentence_dao.js')
@@ -7,7 +9,14 @@ module.exports = function (req) {
     req.params.sentence = sentence.id
     var Generation = require('../models/generation.js')
     let generation = new Generation()
-    generation.create(sentence)
+
+
+    var external = false
+    if(req.external){
+        external = true
+    }
+
+    generation.create(sentence,req.external)
     if(req.file){
         generation.placement()
 

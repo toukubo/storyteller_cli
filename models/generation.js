@@ -2,14 +2,15 @@ module.exports = class Generation {
     constructor() {
         this.generationDao = require('../daos/generation_dao.js')
     }
-    create(sentence) {
+    create(sentence,external = false) {
         this.sentence = sentence
 
         const Templates = require('../daos/template_dao.js')
         const TemplateClass = require('./template.js')
-        this.templates = TemplateClass.instantiateAll(Templates.ofASentence(sentence.id))
+        this.templates = TemplateClass.instantiateAll(Templates.ofASentence(sentence.id,external),external)
 
-        this.generateds = this.interpretAllTemplates()
+
+        this.generateds = this.interpretAllTemplates(req)
         this.generationDao.save(this.jsonObject)
     }
     update(id) {
@@ -24,7 +25,7 @@ module.exports = class Generation {
     get(id) {
         this.jsonObject = this.generationDao.findById(id)
     }
-    interpretAllTemplates(){
+    interpretAllTemplates(req){
         var generateds = []
 
         this.templates.forEach(template => {
@@ -78,8 +79,17 @@ module.exports = class Generation {
     print(){
         if(this.generateds!==null){
             this.generateds.forEach(generated => {
-                console.info(generated.code)
+                // if(!generated.external()){
+                    console.info(generated.code)
+                // }
             });
+            // let external = ''
+            // this.generateds.forEach(generated => {
+            //     if(generated.external()){
+            //         external += generated.code + "\r\n"
+            //     }
+            //     console.info(generated.code)
+            // });
         }
     }
     
